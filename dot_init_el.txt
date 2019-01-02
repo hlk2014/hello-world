@@ -1,0 +1,71 @@
+;; Li-Ke's local setting
+(setq inhibit-startup-screen t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(set-cursor-color "#cd5c5c")
+(add-to-list 'default-frame-alist '(height . 30))
+(add-to-list 'default-frame-alist '(width . 110))
+(set-face-attribute 'default nil :height 140)
+
+;;(global-set-key (kbd "<f11>")  'previous-buffer)
+;;(global-set-key (kbd "<f12>")  'next-buffer)
+(global-set-key (kbd "M-p")  'previous-buffer)
+(global-set-key (kbd "M-n")  'next-buffer)
+(global-set-key (kbd "M-o")    'next-multiframe-window)
+(global-set-key (kbd "M-k")    'kill-buffer-and-window)
+(global-set-key (kbd "C-+")    'text-scale-increase)
+(global-set-key (kbd "C--")    'text-scale-decrease)
+(global-hl-line-mode 1)
+(set-face-attribute 'hl-line nil :foreground nil :background "gray70")
+
+(defun hlk-kill-other-buffers ()
+  (interactive)
+  (mapc 'kill-buffer
+      (delq (current-buffer)
+      (remove-if-not 'buffer-file-name (buffer-list)))))
+
+(defun hlk-kill-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
+(defun hlk-init-dot-el ()
+  (interactive)
+  (find-file user-init-file))
+
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t) ; optional
+
+;; Use emacs compile command to run python script in current buffer
+;; https://stackoverflow.com/questions/443302/emacs-how-to-compile-run-make-without-pressing-enter-for-the-compile-command
+;; http://ergoemacs.org/emacs/elisp_run_current_file.html
+;; https://www.masteringemacs.org/article/mastering-key-bindings-emacs
+(setq compilation-read-command nil)
+(add-hook 'python-mode-hook
+          (lambda ()
+            (set (make-local-variable 'compile-command)
+                 (concat "python " buffer-file-name))))
+(defun add-python-f5-compile-key ()
+  (local-set-key (kbd "<f5>") 'compile))
+(add-hook 'python-mode-hook 'add-python-f5-compile-key)
+;; (global-set-key (kbd "<f5>")  'compile)
+
+;; Settings by emacs packages
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (jedi realgud py-autopep8 material-theme flycheck elpy ein better-defaults))))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
