@@ -124,3 +124,4 @@ PS1="\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;
 #ipdb = 'ipython -c "%run -d $@"'
 #ipdb = 'ipython --simple-prompt -i -c "%run -d $@"'
 
+alias ipython='ipython --simple-prompt -i'

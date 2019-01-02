@@ -35,6 +35,10 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t) ; optional
 
+;; Auto-refresh dired on file change
+(add-hook 'dired-mode-hook 'auto-revert-mode)
+(global-set-key (kbd "C-S-d")  'dired-jump)
+
 ;; Use emacs compile command to run python script in current buffer
 ;; https://stackoverflow.com/questions/443302/emacs-how-to-compile-run-make-without-pressing-enter-for-the-compile-command
 ;; http://ergoemacs.org/emacs/elisp_run_current_file.html
