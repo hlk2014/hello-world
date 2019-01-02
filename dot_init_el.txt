@@ -9,10 +9,10 @@
 
 ;;(global-set-key (kbd "<f11>")  'previous-buffer)
 ;;(global-set-key (kbd "<f12>")  'next-buffer)
-(global-set-key (kbd "M-p")  'previous-buffer)
-(global-set-key (kbd "M-n")  'next-buffer)
-(global-set-key (kbd "M-o")    'next-multiframe-window)
-(global-set-key (kbd "M-k")    'kill-buffer-and-window)
+(global-set-key (kbd "C-S-p")  'previous-buffer)
+(global-set-key (kbd "C-S-n")  'next-buffer)
+(global-set-key (kbd "C-S-o")  'next-multiframe-window)
+(global-set-key (kbd "C-S-k")  'kill-buffer-and-window)
 (global-set-key (kbd "C-+")    'text-scale-increase)
 (global-set-key (kbd "C--")    'text-scale-decrease)
 (global-hl-line-mode 1)
@@ -45,7 +45,7 @@
             (set (make-local-variable 'compile-command)
                  (concat "python " buffer-file-name))))
 (defun add-python-f5-compile-key ()
-  (local-set-key (kbd "<f5>") 'compile))
+  (local-set-key (kbd "C-S-<f5>") 'compile))
 (add-hook 'python-mode-hook 'add-python-f5-compile-key)
 ;; (global-set-key (kbd "<f5>")  'compile)
 

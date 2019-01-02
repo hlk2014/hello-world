@@ -28,3 +28,6 @@ sudo apt-get install kivy-examples
 # learn basic kivy
 http://www.ipaomi.com/
 
+#check linux disk space
+du -H
+
